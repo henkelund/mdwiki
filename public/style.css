@@ -1,0 +1,8 @@
+body > nav {
+    float: left;
+    width: 20%;
+}
+body > div {
+    float: left;
+    width: 80%;
+}

@@ -1,0 +1,11 @@
+<ul class="level-<?php echo $level; ?>">
+<?php foreach ($this->getChildren() as $child): ?>
+    <li>
+        <a href="<?php echo $child->getPath(true); ?>"><?php echo $child->name; ?></a>
+        <?php if ($child->hasChildren()): ?>
+            <?php echo $child->asHtml($level + 1); ?>
+        <?php endif; ?>
+    </li>
+<?php endforeach; ?>
+</ul>
+

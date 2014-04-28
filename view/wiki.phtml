@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title><?php if ($currentNode): ?><?php echo $currentNode->name; ?><?php else: ?>404<?php endif; ?></title>
+        <link rel="stylesheet" type="text/css" href="/style.css"/>
+        <script type="text/javascript" src="/js.js"></script>
+    </head>
+    <body>
+        <nav>
+            <?php echo $navigationHtml; ?>
+            <input id="search" placeholder="Search" />
+            <ul id="searchSuggestions"></ul>
+            <div id="searchResult"></div>
+        </nav>
+        <div>
+            <?php if ($currentNode): ?>
+                <div>
+                <?php if ($document = $currentNode->getDocument()): ?>
+                    <?php echo $document->asHtml(); ?>
+                <?php else: ?>
+                    <h1><?php echo $currentNode->name; ?></h1>
+                <?php endif; ?>
+                </div>
+
+                <?php if ($currentNode->hasChildren()): ?>
+                <ul>
+                    <?php foreach ($currentNode->getChildren() as $child): ?>
+                    <li>
+                        <a href="<?php echo $child->getPath(true); ?>"><?php echo $child->name; ?></a>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>
+            <?php else: ?>
+                <h1>404</h1>
+            <?php endif; ?>
+        </div>
+        <script type="text/javascript">
+        //<![CDATA[
+            (function (global) {
+                global.search = new global.Search('search', 'searchResult', 'searchSuggestions');
+            })(window);
+        //]]>
+        </script>
+    </body>
+</html>
+
