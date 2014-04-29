@@ -20,17 +20,21 @@ if (isset($argv[1]) && $argv[1] == 'reindex') {
 
     require_once APP_DIR . DS . 'Search.php';
     $search = new Search();
-    $response = $search->query($_GET['q']);
-    header('Content-type: application/json; charset=utf8');
+    $hits = $search->query($_GET['q']);
+    header('Content-type: text/html; charset=utf8');
     $html = '<ul>';
-    foreach ($response['result'] as $path => $name) {
-        $html .= sprintf('<li><a href="%s">%s</a></li>', $path, $name);
+    if (is_array($hits)) {
+        foreach ($hits as $hit) {
+            $html .= sprintf(
+                '<li><a href="%s">%s</a><span>%s</span></li>',
+                $hit['path'],
+                $hit['name'],
+                $hit['excerpt']
+            );
+        }
     }
     $html .= '</ul>';
-    echo json_encode(array(
-        'suggestions' => $response['suggestions'],
-        'result'      => $html
-    ));
+    echo $html;
 
 } else {
 

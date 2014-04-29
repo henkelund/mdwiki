@@ -32,28 +32,7 @@
                 || this._request.status != 200) {
                 return;
             }
-            var response = eval('(' + this._request.responseText + ')')
-            ,   that = this
-            ,   li
-            ,   i
-            ;
-            if (typeof response == 'object') {
-                if (response.suggestions !== undefined) {
-                    this._suggest.innerHTML = '';
-                    for (i = 0; i < response.suggestions.length; ++i) {
-                        li = document.createElement('LI');
-                        li.innerHTML = response.suggestions[i];
-                        this._suggest.appendChild(li);
-                        li.onclick = function () {
-                            that._input.value = this.innerHTML;
-                            that._onKeyUp();
-                        }.bind(li);
-                    }
-                }
-                if (response.result !== undefined) {
-                    this._result.innerHTML = response.result;
-                }
-            }
+            this._result.innerHTML = this._request.responseText;
             this._lastSearch = 0;
         }
 
