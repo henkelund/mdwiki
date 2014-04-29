@@ -102,7 +102,7 @@ class Search
 
         $hits = array();
         $pattern = sprintf(
-            '/($|[%s])%s/ui',
+            '/(^|[%s])%s/ui',
             self::$_nonLetters,
             preg_quote($text, '/')
         );
