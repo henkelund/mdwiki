@@ -1,0 +1,141 @@
+// =============================================================================
+//
+//  Component Inputs
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  Text-inputs and Textareas
+//  Common styles:
+// -----------------------------------------------------------------------------
+
+#{$all-text-inputs},
+textarea {
+    background-color: $white;
+    border-radius: $input-radius;
+    border: 1px solid $input-bordercolor;
+    color: $font-input-color;
+    margin: 0;
+    max-width: 100%;
+    padding: $input-padding;
+
+    @include box-sizing(border-box);
+    @include get-font('input', normal, true);
+    @include transition(border-color .2s ease);
+
+    &:active,
+    &:focus,
+    &.is-active {
+        border-color: darken($input-bordercolor, 10%);
+        box-shadow: 0 2px 0 0 rgba(0, 0, 0, .05) inset;
+        outline: 0;
+    }
+}
+
+// -----------------------------------------------------------------------------
+//  Textareas
+//  Specific styles:
+// -----------------------------------------------------------------------------
+
+textarea {
+    resize: vertical;
+}
+
+// Textarea resize in webkit:
+::-webkit-resizer {
+    border: 9px solid transparent;
+    border-bottom-color: rgba(0, 0, 0, .05);
+    border-bottom-right-radius: $input-radius;
+    border-right-color: rgba(0, 0, 0, .05);
+    outline: 0;
+}
+
+// -----------------------------------------------------------------------------
+//  Radio and Checkboxes
+//  Common styles:
+// -----------------------------------------------------------------------------
+
+input[type="radio"],
+input[type="checkbox"] {
+    color: $font-input-color;
+    display: none;
+    float: left;
+    margin-right: .5em;
+    width: auto;
+
+    @include get-font('input', normal, true);
+
+    & + label {
+        cursor: pointer;
+        display: inline-block;
+        line-height: 20px;
+        vertical-align: bottom;
+
+        &:before {
+            @extend %icon;
+
+            background-color: $white;
+            border: 1px solid $input-bordercolor;
+            box-shadow: 0 -2px 0 0 rgba(0, 0, 0, .025) inset;
+            color: $white;
+            content: '';
+            display: inline-block;
+            font-size: 11px;
+            height: 20px;
+            line-height: 20px !important;
+            margin-right: .5em;
+            text-align: center;
+            vertical-align: middle;
+            width: 20px;
+
+            @include box-sizing(border-box);
+            @include transition(color .2s ease);
+        }
+    }
+
+    &:checked + label {
+        &:before {
+            border-color: darken($input-bordercolor, 10%);
+            color: $font-input-color;
+            box-shadow: 0 -2px 0 0 rgba(0, 0, 0, .05) inset;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+//  Radio
+//  Specific styles:
+// -----------------------------------------------------------------------------
+
+input[type="radio"] {
+
+    & + label {
+
+        &:before {
+            @extend %icon-dot-circle-o;
+
+            border-radius: 100%;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+//  Checkbox
+//  Specific styles:
+// -----------------------------------------------------------------------------
+
+input[type="checkbox"] {
+
+    & + label {
+
+        &:before {
+            @extend %icon-check;
+
+            border-radius: $input-radius;
+        }
+    }
+}

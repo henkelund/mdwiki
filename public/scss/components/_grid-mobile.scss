@@ -1,0 +1,40 @@
+// =============================================================================
+//
+//  Component Grid - Mobile:
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//
+//  Fluid Mobile:
+//  -------
+//  Mobile collapses everything smaller than one-half/eight columns.
+//
+// -----------------------------------------------------------------------------
+
+@include media-screen-mobile {
+
+    .container {
+        width: auto;
+
+        .columns {
+            &.one,
+            &.two,
+            &.three,
+            &.four,
+            &.five,
+            &.six,
+            &.seven {
+                width: 100%;
+            }
+
+            &.one-third {
+                width: 100%;
+            }
+        }
+    }
+}

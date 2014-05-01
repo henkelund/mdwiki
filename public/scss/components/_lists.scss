@@ -1,0 +1,93 @@
+// =============================================================================
+//
+//  Component Lists:
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  List:
+// -----------------------------------------------------------------------------
+
+.list {
+    @extend .group;
+
+    list-style: none;
+    margin: ($base-margin / 2) 0;
+    padding: 0;
+
+    > li {
+        margin: 0 0 0 .5em;
+        padding: 0;
+
+        &.right { margin: 0 0 0 .5em; }
+        &:first-child { margin: 0; }
+    }
+
+    // Icons:
+    &.icons-right .icon { margin-left: .5em; }
+    &.icons-left .icon { margin-right: .5em; }
+}
+
+// -----------------------------------------------------------------------------
+//  List Block:
+// -----------------------------------------------------------------------------
+
+.list-block {
+    >li {
+        margin: 0;
+
+        > a {
+            cursor: pointer;
+            display: inline-block;
+            padding: ($base-padding / 2) $base-padding;
+
+            @include transition(background-color .2s ease);
+        }
+
+        &:hover {
+            background-color: $white;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+//  List Vertical:
+// -----------------------------------------------------------------------------
+
+.links-vertical {
+
+    > li {
+        display: block;
+        margin: .5em 0 0;
+        padding: 0;
+    }
+}
+
+// -----------------------------------------------------------------------------
+//  Links list with dropdown
+// -----------------------------------------------------------------------------
+
+.links-dropdown {
+    position: relative;
+
+    > li {
+
+        > div {
+            background-color: $white;
+            display: none;
+            left: 0;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            z-index: 1;
+        }
+
+        &:hover > div {
+            display: block;
+        }
+    }
+}

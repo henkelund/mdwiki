@@ -1,0 +1,125 @@
+// =============================================================================
+//
+//  Mixin Shapes
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  Triangle
+// -----------------------------------------------------------------------------
+
+@mixin triangle($size: '34px', $color: $color-1, $direction: 'top') {
+    background-color: transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid transparent;
+    display: block;
+    height: 0;
+    width: 0;
+
+    @if $direction == 'top' {
+        border-bottom-color: $color;
+    }
+    @else if $direction == 'right' {
+        border-left-color: $color;
+    }
+    @else if $direction == 'bottom' {
+        border-top-color: $color;
+    }
+    @else if $direction == 'left' {
+        border-right-color: $color;
+    }
+
+}
+
+// -----------------------------------------------------------------------------
+//
+//  Handle:
+//  -------
+//  Handle is using the triangle mixin to create a
+//  handle for speaking-bubbles
+//
+// -----------------------------------------------------------------------------
+
+@mixin handle($size: '34px', $color: $color-1, $direction: 'top', $border-color: '') {
+    position: relative;
+
+    &:before {
+        content: '';
+        margin: 0;
+        position: absolute;
+        z-index: 2;
+        @include triangle($size, $color, $direction);
+
+        @if $direction == 'top' {
+            bottom: 100%;
+            left: 50%;
+            margin-left: -($size);
+        }
+        @else if $direction == 'right' {
+            left: 100%;
+            margin-top: -($size);
+            top: 50%;
+        }
+        @else if $direction == 'bottom' {
+            left: 50%;
+            margin-left: -($size);
+            top: 100%;
+        }
+        @else if $direction == 'left' {
+            right: 100%;
+            margin-top: -($size);
+            top: 50%;
+        }
+    }
+
+    @if $border-color != '' {
+        &:after {
+            content: '';
+            position: absolute;
+            z-index: 1;
+            @include triangle($size + 1, $border-color, $direction);
+
+            @if $direction == 'top' {
+                bottom: 100%;
+                left: 50%;
+                margin-left: -($size + 1);
+            }
+            @else if $direction == 'right' {
+                left: 100%;
+                margin-top: -($size + 1);
+                top: 50%;
+            }
+            @else if $direction == 'bottom' {
+                left: 50%;
+                margin-left: -($size + 1);
+                top: 100%;
+            }
+            @else if $direction == 'left' {
+                margin-top: -($size + 1);
+                right: 100%;
+                top: 50%;
+            }
+        }
+    }
+
+}
+
+// -----------------------------------------------------------------------------
+//  Circle:
+// -----------------------------------------------------------------------------
+
+@mixin circle($size, $color) {
+
+    background-color: $color;
+    display: block;
+    height: $size;
+    width: $size;
+    @include border-radius($size/2);
+
+}

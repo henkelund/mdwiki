@@ -1,0 +1,38 @@
+// =============================================================================
+//
+//  Component Sprite Icons:
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  Sprite Maps:
+// -----------------------------------------------------------------------------
+
+$icons:     sprite-map('../images/icons/*.png');
+$icons2x:   sprite-map('../images/icons2x/*.png');
+
+// -----------------------------------------------------------------------------
+//  Icon Base:
+// -----------------------------------------------------------------------------
+
+.icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+// -----------------------------------------------------------------------------
+//
+//  Available icons:
+//  ----------------
+//  To add new icons, add the pngs to icons and
+//  icons2x. then add a class with the same name as
+//  the image, ex: .icon-classname
+//
+// -----------------------------------------------------------------------------
+
+// Example:
+// .icon-name { @include retina-sprite-background(name, $icons, $icons2x) }

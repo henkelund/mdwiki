@@ -1,0 +1,69 @@
+// =============================================================================
+//
+//  Component Tabs
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//  @ToDo:      Rewrite this, add placeholder-class to lists and extend
+//              to remove duplicate code. Also add variables.
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  Base Tabs:
+// -----------------------------------------------------------------------------
+
+.tabs {
+    > ul {
+        float: left;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+
+        @include box-shadow(inset 0 -1px 0 0 $color-border);
+        @include get-font('heading');
+        @include get-font-size('normal');
+
+        > li {
+            border-bottom: 0;
+            border: 1px solid $color-border;
+            float: left;
+            text-transform: uppercase;
+
+            a {
+                background-color: $gray-lighter;
+                color: $gray;
+                float: left;
+                padding: $base-padding;
+
+                &.is-active {
+                    background-color: $white;
+                    color: $black;
+                }
+            }
+        }
+    }
+
+    .tab {
+        border-top: 0;
+        border: 1px solid $color-border;
+        clear: left;
+        display: none;
+        font-size: 1.6em;
+        line-height: 1.5em;
+        margin-bottom: 2em;
+        margin: 1em 0;
+
+        &.is-active {
+            display: block;
+        }
+
+        p {
+            font-size: 1em;
+            line-height: 1em;
+            margin: 0;
+        }
+    }
+}

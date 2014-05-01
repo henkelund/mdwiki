@@ -1,0 +1,33 @@
+// =============================================================================
+//
+//  Mixin Retina Sprites:
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  Build:
+// -----------------------------------------------------------------------------
+
+@mixin retina-sprite-background($name, $normal, $retina) {
+    background-image: sprite-url($normal);
+    background-position: sprite-position($normal, $name);
+    background-repeat: no-repeat;
+    height: image-height(sprite-file($normal, $name));
+    width: image-width(sprite-file($normal, $name));
+
+    @include media-retina {
+        background-image: sprite-url($retina);
+        background-position: 0 round(nth(sprite-position($retina, $name), 2) / 2);
+        height: round(image-height(sprite-file($retina, $name)) / 2);
+        width: round(image-width(sprite-file($retina, $name)) / 2);
+
+        // treat the @2x retina sprite sheet as 50% wide for double resolution upon display
+        $auto-height: auto;
+        $double-width: ceil(image-width(sprite-path($retina)) / 2);
+        @include background-size($double-width $auto-height);
+    }
+}

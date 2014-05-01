@@ -1,0 +1,36 @@
+// =============================================================================
+//
+//  Mixin Buttons
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  Add Button Style:
+// -----------------------------------------------------------------------------
+
+@mixin add-button-style($button-color: #ddd, $font-color: #222) {
+    background-color: $button-color;
+    color: $font-color;
+
+    &:hover {
+
+        @if lightness($button-color) > 90% {
+            background-color: darken($button-color, 10%);
+        }
+        @else {
+            background-color: lighten($button-color, 10%);
+        }
+        box-shadow: 0 -1px 0 0 rgba(0, 0, 0, .2) inset;
+    }
+
+    &:active,
+    &:focus,
+    &.is-active {
+        box-shadow: 0 1px 0 0 rgba(0, 0, 0, .2) inset;
+    }
+
+}

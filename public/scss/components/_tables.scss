@@ -1,0 +1,198 @@
+// =============================================================================
+//
+//  tables
+//  ======
+//
+//  @version    0.0.1
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  Base Tables:
+// -----------------------------------------------------------------------------
+
+table {
+    background-color: $table-background;
+    border-collapse: collapse;
+    border-spacing: 0;
+    max-width: 100%;
+
+    @include get-font-size('mini');
+}
+
+tr,
+td,
+th {
+    @include inherit-font-size();
+}
+
+// -----------------------------------------------------------------------------
+//  Base Table Styles:
+// -----------------------------------------------------------------------------
+
+.table {
+    margin-bottom: $base-margin;
+    width: 100%;
+
+    // Cells:
+    th,
+    td {
+        border-top: 1px solid $table-border;
+        padding: $base-padding;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    th {
+        font-weight: bold;
+    }
+
+    // Bottom align for column headings:
+    thead th {
+        vertical-align: bottom;
+    }
+
+    // Remove top border from thead by default
+    caption + thead tr:first-child th,
+    caption + thead tr:first-child td,
+    colgroup + thead tr:first-child th,
+    colgroup + thead tr:first-child td,
+    thead:first-child tr:first-child th,
+    thead:first-child tr:first-child td {
+        border-top: 0;
+    }
+
+    // Account for multiple tbody instances
+    tbody + tbody {
+        border-top: 2px solid $table-border;
+    }
+}
+
+.table-no-head {
+    tbody tr:first-child td {
+        border-top: 0;
+    }
+}
+
+.table-caption-first-column {
+    tbody td:first-child {
+        font-weight: bold;
+        white-space: nowrap;
+    }
+}
+
+// -----------------------------------------------------------------------------
+//  Condensed Table:
+// -----------------------------------------------------------------------------
+
+.table-condensed {
+    th,
+    td {
+        padding: $base-padding / 2;
+    }
+}
+
+// -----------------------------------------------------------------------------
+//  Bordered Table:
+// -----------------------------------------------------------------------------
+
+.table-bordered {
+    border-collapse: separate; // Done so we can round those corners!
+    border-left: 0;
+    border-radius: $base-radius;
+    border: 1px solid $table-border;
+
+    th,
+    td {
+        border-left: 1px solid $table-border;
+    }
+
+    // Prevent a double border
+    caption + thead tr:first-child th,
+    caption + tbody tr:first-child th,
+    caption + tbody tr:first-child td,
+    colgroup + thead tr:first-child th,
+    colgroup + tbody tr:first-child th,
+    colgroup + tbody tr:first-child td,
+    thead:first-child tr:first-child th,
+    tbody:first-child tr:first-child th,
+    tbody:first-child tr:first-child td {
+        border-top: 0;
+    }
+
+    // For first th or td in the first row in the first thead or tbody
+    thead:first-child tr:first-child th:first-child,
+    tbody:first-child tr:first-child td:first-child {
+        border-top-left-radius: $base-radius;
+    }
+
+    thead:first-child tr:first-child th:last-child,
+    tbody:first-child tr:first-child td:last-child {
+        border-top-right-radius: $base-radius;
+    }
+
+    // For first th or td in the first row in the first thead or tbody
+    thead:last-child tr:last-child th:first-child,
+    tbody:last-child tr:last-child td:first-child,
+    tfoot:last-child tr:last-child td:first-child {
+        border-bottom-left-radius: $base-radius;
+    }
+
+    thead:last-child tr:last-child th:last-child,
+    tbody:last-child tr:last-child td:last-child,
+    tfoot:last-child tr:last-child td:last-child {
+        border-bottom-right-radius: $base-radius;
+    }
+
+    // Special fixes to round the left border on the first td/th
+    caption + thead tr:first-child th:first-child,
+    caption + tbody tr:first-child td:first-child,
+    colgroup + thead tr:first-child th:first-child,
+    colgroup + tbody tr:first-child td:first-child {
+        border-top-left-radius: $base-radius;
+    }
+    caption + thead tr:first-child th:last-child,
+    caption + tbody tr:first-child td:last-child,
+    colgroup + thead tr:first-child th:last-child,
+    colgroup + tbody tr:first-child td:last-child {
+        border-top-right-radius: $base-radius;
+    }
+}
+
+// -----------------------------------------------------------------------------
+//  Striped Table:
+// -----------------------------------------------------------------------------
+
+.table-striped {
+    tbody {
+        tr:nth-child(odd) td,
+        tr:nth-child(odd) th {
+            background-color: $table-background-accent;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+//  Hover Effect:
+//  Has to come after potential striping.
+// -----------------------------------------------------------------------------
+
+.table-hover {
+    tbody {
+        tr:hover td,
+        tr:hover th {
+            background-color: $table-background-hover;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+//  Dotted Table:
+// -----------------------------------------------------------------------------
+
+.table-dotted {
+    td {
+        border-top: 1px dotted $table-border;
+    }
+}

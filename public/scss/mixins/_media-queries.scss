@@ -1,0 +1,76 @@
+// =============================================================================
+//
+//  Mixin Media Queries:
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  Screen Sizes:
+// -----------------------------------------------------------------------------
+
+@mixin media-screen-xlarge {
+    @media only screen and (min-width: $grid-screen-xlarge) {
+        @content;
+    }
+}
+
+
+@mixin media-screen-large-up {
+    @media only screen and (min-width: $grid-screen-large) {
+        @content;
+    }
+}
+
+@mixin media-screen-large {
+    @media only screen and (min-width: $grid-screen-large) and (max-width: $grid-screen-xlarge - 1) {
+        @content;
+    }
+}
+
+@mixin media-screen-tablet {
+    @media only screen and (min-width: $grid-screen-tablet) and (max-width: $grid-screen-large - 1) {
+        @content;
+    }
+}
+
+@mixin media-screen-tablet-down {
+    @media only screen and (max-width: $grid-screen-large - 1) {
+        @content;
+    }
+}
+
+@mixin media-screen-mobile {
+    @media only screen and (max-width: $grid-screen-tablet - 1) {
+        @content;
+    }
+}
+
+@mixin media-screen-mobile-landscape {
+    @media only screen and (min-width: $grid-screen-mobile-landscape) and (max-width: $grid-screen-tablet - 1) {
+        @content;
+    }
+}
+
+@mixin media-screen-mobile-portrait {
+    @media only screen and (max-width: $grid-screen-mobile-landscape - 1) {
+        @content;
+    }
+}
+
+// -----------------------------------------------------------------------------
+//
+//  Retina:
+//  -------
+//  We use Bourbons hidpi media query to detect high-res screens:
+//
+// -----------------------------------------------------------------------------
+
+@mixin media-retina {
+    @include hidpi() {
+        @content;
+    }
+}

@@ -1,0 +1,70 @@
+// =============================================================================
+//
+//  Component Buttons
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  Standard Buttons:
+// -----------------------------------------------------------------------------
+
+button,
+.button {
+    background-color: $button-background-color;
+    border-radius: $button-radius;
+    border: 1px solid $button-bordercolor;
+    box-shadow: 0 -2px 0 0 rgba(0, 0, 0, .1) inset;
+    color: $font-button-color;
+    display: inline-block;
+    margin: 0;
+    max-width: 100%;
+    padding: $button-padding;
+    position: relative;
+
+    @include box-sizing(border-box);
+    @include transition(background-color .2s ease);
+    @include get-font('button', normal, true);
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active,
+    &:focus,
+    &.is-active {
+        outline: 0;
+    }
+
+    .icon {
+        color: rgba(255, 255, 255, .2);
+        height: 100%;
+        left: $base-padding;
+        line-height: inherit;
+        position: absolute;
+        vertical-align: middle;
+    }
+}
+
+// -----------------------------------------------------------------------------
+//  Variations:
+// -----------------------------------------------------------------------------
+
+// Default:
+button,
+.button {
+    @include add-button-style($color-1, $white);
+}
+
+// Primary:
+.button-primary {
+    @include add-button-style($color-1, $white);
+}
+
+// Secondary:
+.button-secondary {
+    @include add-button-style($color-2, $white);
+}

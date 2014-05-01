@@ -1,0 +1,42 @@
+// =============================================================================
+//
+//  Component Overlay
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  Standard Overlay:
+// -----------------------------------------------------------------------------
+
+.overlay {
+    background-color: $white;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+
+    @include opacity(0);
+
+    &.is-active {
+        z-index: 100;
+
+        @include opacity(.5);
+    }
+}
+
+// -----------------------------------------------------------------------------
+//  Variations:
+// -----------------------------------------------------------------------------
+
+.overlay-transparent {
+    background-color: transparent;
+}
+.overlay-dark {
+    background-color: $black;
+}

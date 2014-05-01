@@ -1,0 +1,56 @@
+// =============================================================================
+//
+//  Component Ajax
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  Animation:
+// -----------------------------------------------------------------------------
+
+$animation: rotate;
+
+@include keyframes($animation) {
+
+    0% {
+        @include transform(rotate(0));
+    }
+
+    100% {
+        @include transform(rotate(359deg));
+    }
+}
+
+// -----------------------------------------------------------------------------
+//  Ajax loader:
+// -----------------------------------------------------------------------------
+
+.loading {
+    position: relative;
+    z-index: 0;
+
+    @include opacity(.5);
+
+    &:before {
+        background-color: transparent;
+        border-radius: 20px;
+        border: 10px solid rgba(0, 0, 0, .2);
+        border-top-color: rgba(0, 0, 0, .8);
+        content: '';
+        display: block;
+        height: 20px;
+        left: 50%;
+        margin-left: -20px;
+        margin-top: -20px;
+        position: absolute;
+        top: 50%;
+        width: 20px;
+        z-index: 1;
+
+        @include animation($animation .5s infinite linear);
+    }
+}

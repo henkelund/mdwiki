@@ -1,0 +1,63 @@
+// =============================================================================
+//
+//  Component Grid - Base
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  Base grid:
+// -----------------------------------------------------------------------------
+
+.row {
+    @extend %group;
+
+    margin-bottom: $grid-gutter;
+
+    &.no-margin {
+        margin-bottom: 0;
+    }
+
+    &.tight-margin {
+        margin-bottom: $grid-gutter / 2;
+    }
+}
+
+.container {
+    @extend %group;
+
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+
+    @include transition(width .5s ease);
+
+    .columns {
+        float: left;
+        padding-left: $grid-gutter / 2;
+        padding-right: $grid-gutter / 2;
+
+        @include transition(width .5s ease);
+        @include box-sizing(border-box);
+        @include build-columns(100%);
+        @include build-offset(100%);
+
+        // Nested Column Classes:
+
+        &.alpha {
+            padding-left: 0;
+        }
+
+        &.omega {
+            padding-right: 0;
+        }
+
+        &.alpha.omega {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}

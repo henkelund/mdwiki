@@ -1,0 +1,39 @@
+// =============================================================================
+//
+//  Mixin Font-face:
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//
+//  Since Compass font-face mixin is "kinda crap" we use
+//  another one that can handle font-weights and
+//  styles correctly. Now we are able to write one line
+//  per included font, like so:
+//
+//  @include declare-font-face('Raleway', 'Raleway-Light', 200);
+//  @include declare-font-face('Raleway', 'Raleway-Italic', 400, italic);
+//
+// -----------------------------------------------------------------------------
+
+// relative path to fonts from css-folder:
+$font-folder: 'fonts/' !default;
+
+@mixin declare-font-face($font-family, $font-filename, $font-weight : normal, $font-style :normal, $font-stretch : normal) {
+    $font-path: $font-folder + to-lower-case($font-family) + '/' + $font-filename;
+
+    @font-face {
+        font-family: '#{$font-family}';
+        src: url('#{$font-path}.eot');
+        src: url('#{$font-path}.eot?#iefix') format('embedded-opentype'),
+             url('#{$font-path}.woff') format('woff'),
+             url('#{$font-path}.ttf') format('truetype'),
+             url('#{$font-path}.svg##{$font-family}') format('svg');
+        font-weight: $font-weight;
+        font-style: $font-style;
+        font-stretch: $font-stretch;
+    }
+}

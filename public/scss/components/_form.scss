@@ -1,0 +1,190 @@
+// -----------------------------------------------------------------------------
+//
+//  Component Forms
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+//    Form
+// -----------------------------------------------------------------------------
+
+.form {
+    @extend %group;
+
+    background-color: $color-form;
+    border-radius: $base-radius;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, .05);
+    margin: $base-margin 0;
+    padding: $base-padding / 2;
+}
+
+// -----------------------------------------------------------------------------
+//  Labels
+// -----------------------------------------------------------------------------
+
+label {
+    font-family: $font-input;
+    margin: 0;
+    padding: 0;
+
+    @include get-font-size('normal');
+}
+
+// -----------------------------------------------------------------------------
+//  Form Fields:
+// -----------------------------------------------------------------------------
+
+.form-field {}
+
+.form-field-item {
+    @include transition(all .2s ease);
+}
+
+// -----------------------------------------------------------------------------
+//
+//  Form List
+//  ---------
+//  Using the grid in form list is allowed due to it
+//  using percentages instead of pixels
+//
+// -----------------------------------------------------------------------------
+
+.form-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    > li {
+        display: inline-block;
+        float: left;
+        padding: ($base-padding / 2);
+        width: 100%;
+
+        @include box-sizing(border-box);
+
+        // Make inputs full-width
+        #{$all-text-inputs},
+        button,
+        textarea,
+        input[type="radio"] + label,
+        input[type="checkbox"] + label {
+            width: 100%;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+//
+//  Form List Responsive
+//  --------------------
+//  for mobile-devices where forms might be hard to
+//  fit and understand
+//
+// -----------------------------------------------------------------------------
+
+.form-list-responsive {
+    > li {
+        position: relative;
+
+        // Place labels in placeholder-position
+        label {
+            color: $gray-light;
+            left: ($input-padding * 2) + 1;
+            pointer-events: none;
+            position: absolute;
+            top: ($input-padding * 4) + 1;
+            @include transition(top .2s ease);
+            @include get-font('input', normal, true);
+        }
+
+        // Change style of inputs to be more
+        // responsive-friendly
+
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            border-color: transparent;
+            padding-top: ($input-padding * 3);
+
+            // Move labels out of the way when text
+            //is filled in
+
+            &:valid ~ label, {
+                font-size: 10px;
+                top: ($input-padding * 2) + 1;
+            }
+        }
+
+        input {
+            border-bottom-color: $input-bordercolor;
+
+            &:focus {
+                border-bottom-color: $black;
+            }
+        }
+
+        textarea {
+            border-left-color: $input-bordercolor;
+
+            &:focus {
+                border-left-color: $black;
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+//
+//  Validation:
+//  -----------
+//  This is written specifically for magento form-validation
+//
+// -----------------------------------------------------------------------------
+
+// Text and password validation failure
+// General styles:
+
+input[type="text"],
+input[type="password"] {
+    &.validation-failed {
+        border-color: lighten($color-alert, 20%);
+    }
+
+    &.validation-passed {
+        border-color: lighten($color-success, 20%);
+    }
+}
+
+// Validation Advice:
+
+.validation-advice {
+    background-color: $color-alert;
+    border-radius: $base-radius/2;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, .1);
+    color: $white;
+    display: block;
+    margin: ($base-margin / 4) 0 0;
+    padding: $base-padding ($base-padding / 2);
+    text-align: center;
+
+    @include get-font-size('mini', true);
+    @include handle($base-padding, $color-alert, 'top');;
+
+    .icon {
+        color: rgba(255, 255, 255, .5);
+        line-height: inherit;
+        vertical-align: middle;
+    }
+}
+
+// Validation Legend:
+
+p.required {
+    color: $gray;
+
+    @include get-font-size('small');
+}

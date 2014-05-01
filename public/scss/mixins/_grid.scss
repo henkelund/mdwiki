@@ -1,0 +1,92 @@
+// =============================================================================
+//
+//  Mixin Grid:
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+//------------------------------------------------------------------------------
+//  Build Columns:
+//------------------------------------------------------------------------------
+
+@mixin build-columns($width) {
+
+    $columns-width:     $width / length($grid-columns);
+    $counter:           0;
+
+    $one-third:         $width / 3;
+    $two-thirds:        ($one-third * 2);
+    $one-half:          $width / 2;
+
+    @for $i from 1 through length($grid-columns) {
+
+        @if ($counter == 0) {
+            $counter: $columns-width;
+        }
+
+        &.#{nth($grid-columns, $i)} {
+            width: #{$counter};
+        }
+
+        $counter: $counter + $columns-width;
+    }
+
+    &.one-third {
+        width: $one-third;
+    }
+
+    &.two-thirds {
+        width: $two-thirds;
+    }
+
+    &.one-half {
+        width: $one-half;
+    }
+}
+
+//------------------------------------------------------------------------------
+//  Build All Columns:
+//------------------------------------------------------------------------------
+
+@mixin build-all-columns($value) {
+
+    @for $i from 1 through length($grid-columns) {
+        &.#{nth($grid-columns, $i)} {
+            width: #{$value};
+        }
+    }
+
+    &.one-third {
+        width: $value;
+    }
+
+    &.two-thirds {
+        width: $value;
+    }
+
+    &.one-half {
+        width: $value;
+    }
+
+}
+
+//------------------------------------------------------------------------------
+//  Build Offset:
+//------------------------------------------------------------------------------
+
+@mixin build-offset($width) {
+
+    $columns-width:         $width / length($grid-columns);
+    $counter:               0;
+
+    @for $i from 1 through length($grid-columns) - 1 {
+        $counter: $counter + $columns-width;
+
+        &.offset-by-#{nth($grid-columns, $i)} {
+            padding-left: $counter;
+        }
+    }
+}

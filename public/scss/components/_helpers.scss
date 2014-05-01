@@ -1,0 +1,47 @@
+// =============================================================================
+//
+//  Component Helpers
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  Layout Helpers:
+// -----------------------------------------------------------------------------
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.group,
+%group,
+.clearfix {
+    &:after {
+        clear: both;
+        content: '';
+        display: table;
+    }
+}
+
+.clear { clear: both; }
+
+.off-canvas {
+    left: -9999px;
+    position: absolute;
+    top: -9999px;
+}

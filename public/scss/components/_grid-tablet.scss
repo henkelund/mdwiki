@@ -1,0 +1,34 @@
+// =============================================================================
+//
+//  Component Grid - Tablet:
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//
+//  Fluid Tablet:
+//  -------------
+//  Mobile collapses everything smaller than one-half/eight columns.
+//
+// -----------------------------------------------------------------------------
+
+@include media-screen-tablet {
+
+    .container {
+        width: auto;
+
+        .columns {
+            &.one,
+            &.two,
+            &.three,
+            &.four,
+            &.five {
+                width: 100%;
+            }
+        }
+    }
+}

@@ -1,0 +1,206 @@
+// =============================================================================
+//
+//  Settings
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  Base:
+// -----------------------------------------------------------------------------
+
+$base-fontsize:             10px;
+$base-lineheight:           10px;
+$base-radius:               0;
+$base-margin:               $base-fontsize * 2;
+$base-padding:              $base-fontsize;
+
+// -----------------------------------------------------------------------------
+//  Grid:
+// -----------------------------------------------------------------------------
+
+$grid-columns: (one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen);
+$grid-gutter:                   $base-padding;
+
+$grid-screen-xlarge:            1200px;
+$grid-screen-large:             960px;
+$grid-screen-tablet:            768px;
+$grid-screen-mobile-landscape:  480px;
+$grid-screen-mobile-portrait:   320px;
+
+
+// -----------------------------------------------------------------------------
+//  Colors:
+// -----------------------------------------------------------------------------
+
+// Brand Colors: ---------------------------------------------------------------
+
+$color-1:                   #6FB655; // Bodystore Green
+$color-2:                   #1DAEE6; // Bodystore Blue
+$color-3:                   #884B99; // Bodystore Purple
+$color-4:                   #F68A42; // Bodystore Orange
+$color-5:                   #EC4357; // Bodystore Red
+$color-6:                   #72B755; // Bodystore Green-light
+
+// Black and Grays: ------------------------------------------------------------
+
+$black:                     #000 !default;
+$gray-darker:               #202020 !default;
+$gray-dark:                 #303030 !default;
+$gray-dark-light:           #ddd !default;
+$gray:                      #555 !default;
+$gray-light:                #999 !default;
+$gray-lighter:              #eee !default;
+$white:                     #fff !default;
+
+// Standard Colors: ------------------------------------------------------------
+
+$color-std-red:             #ff5f55;
+$color-std-orange:          #e4850b;
+$color-std-green:           #8dc579;
+$color-std-blue:            #2dd3ec;
+$color-std-yellow:          #dfd242;
+$color-std-grey:            #eee;
+
+// Message Colors: -------------------------------------------------------------
+
+$color-alert:               $color-std-red;
+$color-warning:             $color-std-orange;
+$color-success:             $color-std-green;
+$color-info:                $color-std-blue;
+$color-notice:              $color-std-yellow;
+
+// Layout Colors: --------------------------------------------------------------
+
+$color-body:                $white;
+$color-wrapper:             $white;
+$color-footer:              $white;
+$rating-color:              #eb0;
+$color-primary:             $color-1;
+$color-secondary:           $color-4;
+$color-text:                $gray-dark;
+$color-block-title:         $color-text;
+$color-form:                lighten($gray-lighter, 5%);
+
+// Shadows and Borders: --------------------------------------------------------
+
+$color-border:              darken($gray-lighter, 10%);
+$color-highlight:           $gray-lighter;
+$color-shadow:              $gray-dark;
+
+// Links: ----------------------------------------------------------------------
+
+$color-link:                #4183c4;
+$color-link-hover:          lighten($color-link, 10%);
+$color-link-active:         $color-link-hover;
+$color-link-focus:          $color-link-hover;
+
+// -----------------------------------------------------------------------------
+//  Typography:
+// -----------------------------------------------------------------------------
+
+// Settings: -------------------------------------------------------------------
+
+$font-use-em:               true;
+$font-size:                 $base-fontsize;
+$font-margin:               $base-margin;
+
+// Preset Fonts: ---------------------------------------------------------------
+
+$font-sans:                 SourceSansPro, "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$font-sans-weight:          400;
+$font-sans-style:           normal;
+$font-sans-color:           $color-text;
+
+$font-serif:                "Oswald-light", Georgia, "Times New Roman", Times, serif;
+$font-serif-weight:         normal;
+$font-serif-style:          normal;
+$font-serif-color:          $color-text;
+
+$font-mono:                 SourceCodePro, Courier, monospace, monotype, serif;
+$font-mono-weight:          normal;
+$font-mono-style:           normal;
+$font-mono-color:           $color-text;
+
+$font-body:                 $font-sans;
+$font-body-weight:          400;
+$font-body-style:           normal;
+$font-body-color:           $color-text;
+
+$font-body-bold:            $font-sans;
+$font-body-bold-weight:     600;
+$font-body-bold-style:      normal;
+$font-body-bold-color:      $color-text;
+
+$font-heading:              $font-sans;
+$font-heading-weight:       600;
+$font-heading-style:        normal;
+$font-heading-color:        $color-text;
+$font-heading-transform:    none;
+
+$font-input:                $font-sans;
+$font-input-weight:         400;
+$font-input-style:          normal;
+$font-input-color:          $gray;
+$font-input-transform:      none;
+
+$font-button:               $font-sans;
+$font-button-weight:        normal;
+$font-button-style:         normal;
+$font-button-color:         $white;
+$font-button-transform:     uppercase;
+
+// Preset Font Sizes: ----------------------------------------------------------
+
+$fontsize-micro:            11;
+$lineheight-micro:          12;
+
+$fontsize-mini:             12;
+$lineheight-mini:           14;
+
+$fontsize-small:            14;
+$lineheight-small:          18;
+
+$fontsize-normal:           16;
+$lineheight-normal:         24;
+
+$fontsize-medium:           18;
+$lineheight-medium:         26;
+
+$fontsize-large:            26;
+$lineheight-large:          32;
+
+$fontsize-huge:             36;
+$lineheight-huge:           42;
+
+// -----------------------------------------------------------------------------
+//  Input & textarea:
+// -----------------------------------------------------------------------------
+
+$input-fontsize:            $base-fontsize * 2;
+$input-padding:             ($base-padding / 2);
+$input-bordercolor:         $color-border;
+$input-radius:              $base-radius;
+$input-font:                $font-serif;
+
+// -----------------------------------------------------------------------------
+//  Buttons:
+// -----------------------------------------------------------------------------
+
+$button-padding:            ($base-padding / 2);
+$button-bordercolor:        transparent;
+$button-radius:             $base-radius;
+$button-background-color:   $color-1;
+
+// -----------------------------------------------------------------------------
+//  Tables:
+// -----------------------------------------------------------------------------
+
+$table-background:              transparent; // overall background-color
+$table-background-accent:       $gray-light; // for striping
+$table-background-hover:        $gray-light; // for hover
+$table-border:                  $color-border; // table and cell border
+

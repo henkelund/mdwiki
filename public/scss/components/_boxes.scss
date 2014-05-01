@@ -1,0 +1,63 @@
+// =============================================================================
+//
+//  Component Boxes:
+//
+//  @version    0.0.1
+//  @package    endles.scss
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+//  Standard Box:
+// -----------------------------------------------------------------------------
+
+.box {
+    margin: 0 0 $base-margin;
+    padding: 0;
+
+    .box-title {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: inherit;
+            margin-top: 0;
+        }
+    }
+
+    .box-inner {
+        background-color: transparent;
+        padding: $base-padding ($base-padding * 2);
+    }
+}
+
+// -----------------------------------------------------------------------------
+//  Box Variations:
+// -----------------------------------------------------------------------------
+
+.box-blank {
+    .box-inner { background-color: $white; }
+}
+
+
+.box-primary {
+    .box-inner {
+        background-color: $color-info;
+        color: $white;
+    }
+
+    @include handle(10px, $color-info, 'bottom')
+}
+
+
+.box-secondary {
+    .box-inner {
+        background-color: $color-5;
+        color: $white;
+    }
+
+    @include handle(40px, $color-5, 'left')
+}

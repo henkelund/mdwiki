@@ -1,0 +1,209 @@
+// =============================================================================
+//
+//  layout
+//  ===========
+//
+//  @version    0.0.1
+//  @author     Daniel Bergstrom <danjulf@gmail.com>
+//
+// =============================================================================
+
+$_nav-width: 250px;
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+
+    @include transition(margin .5s ease);
+}
+
+// -----------------------------------------------------------------------------
+//  Header:
+// -----------------------------------------------------------------------------
+
+.header {
+    border-bottom: 1px solid $color-border;
+    color: $gray-light;
+
+    .box,
+    p {
+        margin: 0;
+    }
+}
+
+// -----------------------------------------------------------------------------
+//  Sidebar:
+// -----------------------------------------------------------------------------
+
+// Search:
+.search {
+    padding: $base-padding;
+    position: relative;
+
+    .icon-search {
+        color: black;
+        font-size: 2em;
+        position: absolute;
+        right: 15px;
+        top: 18px;
+    }
+}
+
+#search {
+    width: 100%;
+
+
+}
+
+#searchResult {
+    @include transition(height .4s ease);
+
+    ul {
+        background-color: $white;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        @include box-sizing(border-box);
+        @include get-font-size('small');
+
+        > li {
+            padding: $base-padding / 2;
+
+            > a {
+                display: block;
+                font-weight: bold;
+            }
+
+            > span {
+                font-style: italic;
+            }
+        }
+    }
+}
+
+//Menu:
+
+#navLink {
+    background-color: $gray-dark;
+    display: block;
+    left: 100%;
+    padding: $base-padding;
+    position: absolute;
+    font-size: 2em;
+    line-height: 1em;
+
+    @include opacity(.8);
+    @include transition(background-color .2s ease, opacity .2s ease);
+
+    &:hover {
+        background-color: $gray;
+        @include opacity(1);
+    }
+
+    span {
+        vertical-align: middle;
+        text-align: center;
+        width: 20px;
+        height: 20px;
+        display: none;
+        color: $white;
+    }
+}
+
+nav {
+    position: fixed;
+    width: $_nav-width;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: $gray-dark;
+    z-index: 100;
+
+    @include box-sizing(border-box);
+    @include transition(left .5s ease);
+
+    [class^="level-"] {
+        display: none;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            display: block;
+        }
+
+        a {
+            position: relative;
+            color: $white;
+            display: block;
+            padding: $base-padding;
+            background-color: transparent;
+
+            @include transition(background-color .2s ease);
+
+            &:hover {
+                background-color: $gray;
+            }
+
+            span {
+                position: absolute;
+                display: block;
+                line-height: inherit;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                width: 44px;
+                line-height: 44px;
+                text-align: center;
+                border-left: 1px solid $gray;
+                background-color: $gray-dark;
+
+                @include transition(background-color .2s ease, border-color .2s ease);
+
+                &:hover {
+                    border-color: $gray-light;
+                    background-color: $gray;
+                }
+            }
+        }
+    }
+
+    .level-1 {
+        display: block;
+        border-bottom: 1px solid $gray;
+        overflow: scroll;
+
+        > li {
+            border-top: 1px solid $gray;
+
+            > a {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+//  Content:
+// -----------------------------------------------------------------------------
+
+//
+
+// -----------------------------------------------------------------------------
+//  Footer:
+// -----------------------------------------------------------------------------
+
+.footer {
+    border-top: 1px solid $color-border;
+    color: $gray-light;
+    background-color: $gray-lighter;
+
+    .box {
+        margin: 0;
+    }
+}
