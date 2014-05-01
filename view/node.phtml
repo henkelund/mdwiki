@@ -1,7 +1,12 @@
 <ul class="level-<?php echo $level; ?>">
 <?php foreach ($this->getChildren() as $child): ?>
     <li>
-        <a href="<?php echo $child->getPath(true); ?>"><?php echo $child->name; ?></a>
+        <a href="<?php echo $child->getPath(true); ?>">
+            <?php echo $child->name; ?>
+            <?php if ($child->hasChildren()): ?>
+                <span class="icon icon-angle-down"></span>
+            <?php endif; ?>
+        </a>
         <?php if ($child->hasChildren()): ?>
             <?php echo $child->asHtml($level + 1); ?>
         <?php endif; ?>
