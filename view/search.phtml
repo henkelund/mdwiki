@@ -1,0 +1,13 @@
+<ul>
+    <?php if (is_array($result)) foreach ($result as $hit): ?>
+    <li>
+        <a href="<?php echo $hit['path']; ?>">
+            <?php echo $hit['name']; ?>
+        </a>
+        <?php if (!empty($hit['excerpt'])): ?>
+        <span><?php echo $hit['excerpt']; ?></span>
+        <?php endif; ?>
+    </li>
+    <?php endforeach; ?>
+</ul>
+

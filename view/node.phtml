@@ -1,14 +1,14 @@
 <ul class="level-<?php echo $level; ?>">
-<?php foreach ($this->getChildren() as $child): ?>
+<?php foreach ($node->getChildren() as $child): ?>
     <li>
         <a href="<?php echo $child->getPath(true); ?>">
-            <?php echo $child->name; ?>
+            <?php echo $child->getName(); ?>
             <?php if ($child->hasChildren()): ?>
                 <span class="icon icon-angle-down"></span>
             <?php endif; ?>
         </a>
         <?php if ($child->hasChildren()): ?>
-            <?php echo $child->asHtml($level + 1); ?>
+            <?php echo $child->getChildLinksHtml($level + 1); ?>
         <?php endif; ?>
     </li>
 <?php endforeach; ?>

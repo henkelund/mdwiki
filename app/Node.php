@@ -1,11 +1,12 @@
 <?php
 
 require_once APP_DIR . DS . 'Document.php';
+require_once APP_DIR . DS . 'View.php';
 
 class Node
 {
 
-    public $name = null;
+    protected $_name = null;
 
     protected $_document = null;
 
@@ -15,7 +16,7 @@ class Node
 
     public function __construct($file)
     {
-        $this->name = preg_replace('/\.[a-z]{2,4}$/', '', basename($file));
+        $this->_name = preg_replace('/\.[a-z]{2,4}$/', '', basename($file));
         if (is_dir($file)) {
             $children = scandir($file);
             foreach ($children as $child) {
@@ -39,17 +40,22 @@ class Node
         $files = array();
         foreach ($this->_children as $i => $child) {
             if (is_null($child->_document)) {
-                $dirs[$child->name] = $child;
+                $dirs[$child->getName()] = $child;
             } else {
                 $files[$i] = $child;
             }
         }
         foreach ($files as $i => $file) {
-            if (isset($dirs[$file->name])) {
-                $dirs[$file->name]->_document = $file->_document;
+            if (isset($dirs[$file->getName()])) {
+                $dirs[$file->getName()]->_document = $file->_document;
                 unset($this->_children[$i]);
             }
         }
+    }
+
+    public function getName()
+    {
+        return $this->_name;
     }
 
     public function hasChildren()
@@ -62,19 +68,43 @@ class Node
         return $this->_children;
     }
 
+    public function hasParent()
+    {
+        return !is_null($this->_parent);
+    }
+
+    public function getParent()
+    {
+        return $this->_parent;
+    }
+
     public function getPath($escape = false)
     {
-        $segment = $escape ? urlencode($this->name) : $this->name;
+        $segment = $escape ? urlencode($this->getName()) : $this->getName();
         return $this->_parent
             ? sprintf('%s/%s', $this->_parent->getPath($escape), $segment)
             : '';
     }
 
-    public function asHtml($level = 1)
+    public function getChildLinksHtml($level = 1)
     {
-        ob_start();
-        include VIEW_DIR . DS . 'node.phtml';
-        return ob_get_clean();
+        return View::render('node.phtml', array(
+            'node'  => $this,
+            'level' => $level
+        ));
+    }
+
+    public function getCrumbsHtml()
+    {
+        $crumbs = array();
+        $node = $this;
+        while ($node) {
+            array_unshift($crumbs, $node);
+            $node = $node->getParent();
+        }
+        return View::render('crumbs.phtml', array(
+            'crumbs' => $crumbs
+        ));
     }
 
     public function getDocument()

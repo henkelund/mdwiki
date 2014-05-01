@@ -1,0 +1,24 @@
+<ul class="breadcrumbs">
+<?php $i = 0; $count = count($crumbs); foreach ($crumbs as $node): ?>
+    <?php
+        $home = $i == 0;
+        $current = $i == $count - 1;
+    ?>
+    <li>
+        <?php if (!$current): ?>
+        <a href="<?php echo $home ? '/' : $node->getPath(true); ?>">
+        <?php endif; ?>
+
+            <?php if ($home): ?>
+            <span class="icon icon-home"></span>
+            <?php else: ?>
+            <?php echo $node->getName(); ?>
+            <?php endif; ?>
+
+        <?php if (!$current): ?>
+        </a>
+        <?php endif; ?>
+    </li>
+<?php ++$i; endforeach; ?>
+</ul>
+
