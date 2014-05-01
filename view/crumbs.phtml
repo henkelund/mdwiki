@@ -1,4 +1,4 @@
-<ul class="breadcrumbs">
+<ul class="breadcrumbs list">
 <?php $i = 0; $count = count($crumbs); foreach ($crumbs as $node): ?>
     <?php
         $home = $i == 0;
@@ -17,6 +17,9 @@
 
         <?php if (!$current): ?>
         </a>
+    </li>
+    <li>
+        <span class="icon icon-angle-right"></span>
         <?php endif; ?>
     </li>
 <?php ++$i; endforeach; ?>
