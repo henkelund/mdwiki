@@ -17,6 +17,10 @@
             var query = this._input.value
             ,   now = new Date().getTime()
             ;
+            if (query.replace(/(^\s)|(\s$)/g, '').length == 0) {
+                this._result.innerHTML = '';
+                return;
+            }
             if (query.length < 3 || (now - this._lastSearch) < 500) {
                 return;
             }
@@ -38,11 +42,14 @@
 
     };
 
+
+
     exports.Menu = function ()
     {
         this._toggleElement = doc.getElementById('navLink');
         this._toggleElement.onclick = this._toggleMenu.bind(this);
-        this._expandElements = doc.getElementsByClassName('icon-angle-down');
+        this._expandElements = doc.getElementsByClassName('menu-expand');
+        this._storageObject = localStorage.getObject('menu') || {};
         this.initialize();
     };
 
@@ -53,33 +60,103 @@
             for (var i = 0; i < this._expandElements.length; i++) {
                 this._expandElements[i].onclick = this._onClick.bind(this);
             }
+            // Retrieve values from localStorage:
+            var storage = this._storageObject;
+            if (typeof storage === 'object'){
+                //Set Menu state:
+                if(storage.state !== undefined) {
+                    doc.body.setAttribute('state', storage.state);
+                }
+                // Set active nodes:
+                if(storage.activeNodes !== undefined) {
+                    for (var i = 0; i < storage.activeNodes.length; i++) {
+                        var node = doc.getElementById(storage.activeNodes[i]);
+                        if (node !== 'undefined') {
+                            node.classList.add('active');
+                        }
+                    }
+                }
+            }
         },
 
-        _toggleMenu: function() {
+        _toggleMenu: function(event) {
             var body = doc.body,
                 state = doc.body.getAttribute('state');
-
-            if (state == 'menu' ) {
-               body.setAttribute('state','');
-            } else {
-              body.setAttribute('state','menu');
-            }
-        },
-
-        _onClick: function()
-        {
             event.preventDefault();
-            this._toggleLink(event.toElement.parentNode);
+            event.stopPropagation();
+            if (state == 'menu' ) {
+                body.setAttribute('state','');
+                this._storageObject.state = '';
+            } else {
+                body.setAttribute('state','menu');
+                this._storageObject.state = 'menu';
+            }
+            this._store();
         },
 
-        _toggleLink: function(link){
-            var child = link.parentNode.getElementsByTagName('ul')[0];
-            if (child.style.display == 'block') {
-                child.style.display = 'none';
+        _onClick: function(event) {
+            var element = event.currentTarget;
+            event.preventDefault();
+            event.stopPropagation();
+            this._toggleLink(element.parentNode, element);
+        },
+
+        _toggleLink: function(link) {
+            if (link.parentNode.classList.contains('active')) {
+                link.parentNode.classList.remove('active');
             } else {
-                child.style.display = 'block';
+                link.parentNode.classList.add('active');
             }
+            this._findActiveNodes();
+        },
+
+        _findActiveNodes: function() {
+            var activeNodes = doc.getElementsByTagName('nav')[0].getElementsByClassName('active'),
+                activeNodesIds = [];
+            for (var i = 0; i < activeNodes.length; i++) {
+                activeNodesIds[i] = activeNodes[i].getAttribute('id');
+            }
+            this._storageObject.activeNodes = activeNodesIds;
+            this._store();
+        },
+
+        _store: function() {
+            localStorage.setObject('menu', this._storageObject)
         }
+    };
+
+
+
+    exports.App = function ()
+    {
+        this._links = doc.getElementsByTagName('a');
+        this.initialize();
+    };
+
+    exports.App.prototype = {
+
+        initialize: function() {
+            for (var i = 0; i < this._links.length; i++) {
+                this._links[i].onclick = this._onClick.bind(this);
+            }
+        },
+
+        _onClick: function(event) {
+            doc.body.classList.add('loading');
+        }
+
+    };
+
+
+
+    // Extending localStorage to store objects:
+    Storage.prototype.setObject = function(key, value) {
+        this.setItem(key, JSON.stringify(value));
+    };
+
+    Storage.prototype.getObject = function(key) {
+        var value = this.getItem(key);
+        return value && JSON.parse(value);
     };
 
 })(window, document);
