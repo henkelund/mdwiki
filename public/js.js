@@ -9,7 +9,7 @@
         this._lastSearch = 0;
         this._request = new XMLHttpRequest();
         this._request.onreadystatechange = this._responseCallback.bind(this);
-    }
+    };
     exports.Search.prototype = {
 
         _onKeyUp: function ()
@@ -36,6 +36,50 @@
             this._lastSearch = 0;
         }
 
+    };
+
+    exports.Menu = function ()
+    {
+        this._toggleElement = doc.getElementById('navLink');
+        this._toggleElement.onclick = this._toggleMenu.bind(this);
+        this._expandElements = doc.getElementsByClassName('icon-angle-down');
+        this.initialize();
+    };
+
+    exports.Menu.prototype = {
+
+        initialize: function() {
+            // Bind onclick:
+            for (var i = 0; i < this._expandElements.length; i++) {
+                this._expandElements[i].onclick = this._onClick.bind(this);
+            }
+        },
+
+        _toggleMenu: function() {
+            var body = doc.body,
+                state = doc.body.getAttribute('state');
+
+            if (state == 'menu' ) {
+               body.setAttribute('state','');
+            } else {
+              body.setAttribute('state','menu');
+            }
+        },
+
+        _onClick: function()
+        {
+            event.preventDefault();
+            this._toggleLink(event.toElement.parentNode);
+        },
+
+        _toggleLink: function(link){
+            var child = link.parentNode.getElementsByTagName('ul')[0];
+            if (child.style.display == 'block') {
+                child.style.display = 'none';
+            } else {
+                child.style.display = 'block';
+            }
+        }
     };
 
 })(window, document);
