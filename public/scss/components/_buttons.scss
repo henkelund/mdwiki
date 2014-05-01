@@ -17,7 +17,6 @@ button,
     background-color: $button-background-color;
     border-radius: $button-radius;
     border: 1px solid $button-bordercolor;
-    box-shadow: 0 -2px 0 0 rgba(0, 0, 0, .1) inset;
     color: $font-button-color;
     display: inline-block;
     margin: 0;
@@ -31,6 +30,7 @@ button,
 
     &:hover {
         cursor: pointer;
+        color: $font-button-color;
     }
 
     &:active,
@@ -56,15 +56,15 @@ button,
 // Default:
 button,
 .button {
-    @include add-button-style($color-1, $white);
+    @include add-button-style($gray-dark, $white);
 }
 
 // Primary:
 .button-primary {
-    @include add-button-style($color-1, $white);
+    @include add-button-style($gray-dark, $white);
 }
 
 // Secondary:
 .button-secondary {
-    @include add-button-style($color-2, $white);
+    @include add-button-style($white, $gray-dark);
 }

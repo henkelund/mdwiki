@@ -33,8 +33,7 @@ $animation: rotate;
     position: relative;
     z-index: 0;
 
-    @include opacity(.5);
-
+    // Spinner:
     &:before {
         background-color: transparent;
         border-radius: 20px;
@@ -52,5 +51,15 @@ $animation: rotate;
         z-index: 1;
 
         @include animation($animation .5s infinite linear);
+    }
+    // Overlay:
+    &:after {
+        content: '';
+        position: absolute;
+        background-color: rbga(255, 255, 255, .5);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
 }

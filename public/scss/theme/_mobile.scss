@@ -22,8 +22,8 @@ body[state="menu"] {
     z-index: 1;
 
     // Overlay:
-    &:before {
-        background-color: rgba(0, 0, 0, .1);
+    &:after {
+        background-color: rgba(255, 255, 255, .5);
         bottom: 0;
         content: '';
         display: block;
@@ -31,10 +31,10 @@ body[state="menu"] {
         position: absolute;
         right: 0;
         top: 0;
-        z-index: 100;
+        z-index: 10;
     }
 
-    nav { left: 0; }
+    .navigation { left: 0; }
 
     #navLink .open { display: none; }
     #navLink .close { display: block; }
@@ -53,7 +53,7 @@ body[state="menu"] {
 //Menu:
 #navLink .open { display: block; }
 
-nav {
+.navigation {
     left: -$_nav-width;
 }
 

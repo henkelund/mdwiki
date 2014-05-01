@@ -20,17 +20,18 @@
 
         @if lightness($button-color) > 90% {
             background-color: darken($button-color, 10%);
+            color: $font-color;
         }
         @else {
             background-color: lighten($button-color, 10%);
+            color: $font-color;
         }
-        box-shadow: 0 -1px 0 0 rgba(0, 0, 0, .2) inset;
     }
 
     &:active,
     &:focus,
     &.is-active {
-        box-shadow: 0 1px 0 0 rgba(0, 0, 0, .2) inset;
+
     }
 
 }

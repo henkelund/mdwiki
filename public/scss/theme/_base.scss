@@ -25,24 +25,27 @@ body {
 //  Header:
 // -----------------------------------------------------------------------------
 
-.header {
-    border-bottom: 1px solid $color-border;
-    color: $gray-light;
-
-    .box,
-    p {
-        margin: 0;
-    }
-}
-
 // -----------------------------------------------------------------------------
 //  Sidebar:
 // -----------------------------------------------------------------------------
 
 // Search:
 .search {
+    background-color: $gray-lighter;
     padding: $base-padding;
     position: relative;
+
+    input[type="text"] {
+        background-color: $gray-lighter;
+        border-color: transparent;
+        color: $gray;
+        font-weight: bold;
+
+        @include placeholder {
+            color: $gray-light;
+            font-weight: normal;
+        }
+    }
 
     .icon-search {
         color: black;
@@ -50,6 +53,7 @@ body {
         position: absolute;
         right: 15px;
         top: 18px;
+        color: $gray-light;
     }
 }
 
@@ -63,16 +67,17 @@ body {
     @include transition(height .4s ease);
 
     ul {
-        background-color: $white;
         list-style: none;
         margin: 0;
         padding: 0;
+        background-color: $gray-lighter;
 
         @include box-sizing(border-box);
         @include get-font-size('small');
 
         > li {
-            padding: $base-padding / 2;
+            color: $gray;
+            padding: $base-padding ($base-padding / 2);
 
             > a {
                 display: block;
@@ -96,13 +101,21 @@ body {
     position: absolute;
     font-size: 2em;
     line-height: 1em;
+    cursor: pointer;
+    z-index: 100;
 
-    @include opacity(.8);
     @include transition(background-color .2s ease, opacity .2s ease);
 
     &:hover {
         background-color: $gray;
-        @include opacity(1);
+
+        .open {
+            color: $color-std-green;
+        }
+
+        .close {
+            color: $color-std-red;
+        }
     }
 
     span {
@@ -115,7 +128,7 @@ body {
     }
 }
 
-nav {
+.navigation {
     position: fixed;
     width: $_nav-width;
     top: 0;
@@ -127,83 +140,104 @@ nav {
     @include box-sizing(border-box);
     @include transition(left .5s ease);
 
-    [class^="level-"] {
-        display: none;
-        list-style: none;
-        padding: 0;
-        margin: 0;
+    .inner {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: scroll;
+    }
+}
 
-        li {
-            display: block;
+nav ul {
+    height: 0px;
+    visibility: hidden;
+    overflow: hidden;
+    opacity: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(255, 255, 255, .1);
+
+    @include transition( height 0 ease .5s, visibility 0 ease 2s, opacity 2s ease);
+
+    li {
+        display: block;
+
+        &.active {
+            > a > .menu-expand {
+                @extend %icon-angle-down;
+
+                background-color: rgba(255, 255, 255, .05)
+            }
         }
 
-        a {
-            position: relative;
+        &.current {
+            > a:after {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                content: '';
+                @include triangle(22px, $white, 'left');
+            }
+        }
+    }
+
+    a {
+        position: relative;
+        color: $white;
+        display: block;
+        padding: $base-padding $base-padding $base-padding 54px;
+        background-color: transparent;
+
+        @include transition(background-color .2s ease);
+
+        &:hover {
             color: $white;
+            background-color: rgba(255, 255, 255, .1);
+        }
+
+        .menu-expand {
+            @extend %icon-angle-right;
+
+            position: absolute;
             display: block;
-            padding: $base-padding;
-            background-color: transparent;
+            line-height: inherit;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 44px;
+            line-height: 44px;
+            text-align: center;
 
             @include transition(background-color .2s ease);
 
             &:hover {
-                background-color: $gray;
-            }
-
-            span {
-                position: absolute;
-                display: block;
-                line-height: inherit;
-                right: 0;
-                top: 0;
-                bottom: 0;
-                width: 44px;
-                line-height: 44px;
-                text-align: center;
-                border-left: 1px solid $gray;
-                background-color: $gray-dark;
-
-                @include transition(background-color .2s ease, border-color .2s ease);
-
-                &:hover {
-                    border-color: $gray-light;
-                    background-color: $gray;
-                }
+                background-color: rgba(255,255,255,.1);
             }
         }
     }
+}
 
-    .level-1 {
-        display: block;
-        border-bottom: 1px solid $gray;
-        overflow: scroll;
+nav li.active > ul,
+nav .level-1 {
+    height: auto;
+    visibility: visible;
+    opacity: 1;
 
-        > li {
-            border-top: 1px solid $gray;
+    @include transition(height 0 linear 0, visibility 0 linear 0, opacity .5s ease);
+}
 
-            > a {
-                font-weight: bold;
-            }
-        }
-    }
+nav .level-1 {
+    background-color: transparent;
 }
 
 // -----------------------------------------------------------------------------
 //  Content:
 // -----------------------------------------------------------------------------
 
-//
-
 // -----------------------------------------------------------------------------
 //  Footer:
 // -----------------------------------------------------------------------------
-
-.footer {
-    border-top: 1px solid $color-border;
-    color: $gray-light;
-    background-color: $gray-lighter;
-
-    .box {
-        margin: 0;
-    }
-}

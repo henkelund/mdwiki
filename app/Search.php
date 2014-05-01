@@ -2,6 +2,7 @@
 
 require_once APP_DIR . DS . 'Node.php';
 require_once LIB_DIR . DS . 'PorterStemmer.php';
+require_once APP_DIR . DS . 'View.php';
 
 class Search
 {
@@ -88,6 +89,14 @@ class Search
         'you\'ll', 'you\'re', 'you\'ve', 'your', 'yours', 'yourself',
         'yourselves', 'zero'
     );
+
+    public function getResultHtml($query, $limit = 5)
+    {
+        $result = $this->query($query, $limit = 5);
+        return View::render('search.phtml', array(
+            'result' => $result
+        ));
+    }
 
     public function query($text, $limit = 5)
     {
@@ -238,11 +247,11 @@ class Search
             $html = $node->getDocument()->asHtml();
             $text = html_entity_decode(
                 strip_tags(
-                    $node->name . ' ' . $html
+                    $node->getName() . ' ' . $html
                 )
             );
             $id = array_push($index['documents'], array(
-                'name'   => $node->name,
+                'name'   => $node->getName(),
                 'path'   => $node->getPath(true),
                 'text'   => $text,
                 'fields' => $this->_getFields($html)

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title><?php if ($currentNode): ?><?php echo $currentNode->name; ?><?php else: ?>404<?php endif; ?></title>
+        <title><?php if ($currentNode): ?><?php echo $currentNode->getName(); ?><?php else: ?>404<?php endif; ?></title>
         <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
         <script type="text/javascript" src="/js.js"></script>
     </head>
@@ -41,10 +41,11 @@
                         <div class="box-inner">
                             <?php if ($currentNode): ?>
                                 <div>
+                                    <?php echo $currentNode->getCrumbsHtml(); ?>
                                 <?php if ($document = $currentNode->getDocument()): ?>
                                     <?php echo $document->asHtml(); ?>
                                 <?php else: ?>
-                                    <h1><?php echo $currentNode->name; ?></h1>
+                                    <h1><?php echo $currentNode->getName(); ?></h1>
                                 <?php endif; ?>
                                 </div>
 
@@ -52,7 +53,7 @@
                                 <ul>
                                     <?php foreach ($currentNode->getChildren() as $child): ?>
                                     <li>
-                                        <a href="<?php echo $child->getPath(true); ?>"><?php echo $child->name; ?></a>
+                                        <a href="<?php echo $child->getPath(true); ?>"><?php echo $child->getName(); ?></a>
                                     </li>
                                     <?php endforeach; ?>
                                 </ul>

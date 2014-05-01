@@ -144,14 +144,14 @@ $font-heading-transform:    none;
 $font-input:                $font-sans;
 $font-input-weight:         400;
 $font-input-style:          normal;
-$font-input-color:          $gray;
+$font-input-color:          $gray-dark;
 $font-input-transform:      none;
 
 $font-button:               $font-sans;
 $font-button-weight:        normal;
 $font-button-style:         normal;
 $font-button-color:         $white;
-$font-button-transform:     uppercase;
+$font-button-transform:     none;
 
 // Preset Font Sizes: ----------------------------------------------------------
 
@@ -182,18 +182,18 @@ $lineheight-huge:           42;
 
 $input-fontsize:            $base-fontsize * 2;
 $input-padding:             ($base-padding / 2);
-$input-bordercolor:         $color-border;
+$input-bordercolor:         $gray-dark;
 $input-radius:              $base-radius;
-$input-font:                $font-serif;
+$input-font:                $font-sans;
 
 // -----------------------------------------------------------------------------
 //  Buttons:
 // -----------------------------------------------------------------------------
 
-$button-padding:            ($base-padding / 2);
-$button-bordercolor:        transparent;
+$button-padding:            ($base-padding / 2) $base-padding;
+$button-bordercolor:        $gray-dark;
 $button-radius:             $base-radius;
-$button-background-color:   $color-1;
+$button-background-color:   $gray-dark;
 
 // -----------------------------------------------------------------------------
 //  Tables:

@@ -1,6 +1,8 @@
 <?php
 
 require_once APP_DIR . DS . 'Node.php';
+require_once APP_DIR . DS . 'View.php';
+require_once APP_DIR . DS . 'Search.php';
 
 class Wiki
 {
@@ -28,14 +30,24 @@ class Wiki
 
     public function render($path = '')
     {
-        $navigationHtml = $this->_docTree->asHtml();
-        $currentNode = null;
-        if (isset($this->_pathIndex[$path])) {
-            $currentNode = $this->_pathIndex[$path];
+        if (isset($_GET['q'])) {
+
+            $search = new Search();
+            return $search->getResultHtml($_GET['q']);
+
+        } else {
+
+            $path = rtrim($path, '/');
+            $currentNode = null;
+            if (isset($this->_pathIndex[$path])) {
+                $currentNode = $this->_pathIndex[$path];
+            }
+            return View::render('wiki.phtml', array(
+                'navigationHtml' => $this->_docTree->getChildLinksHtml(),
+                'currentNode'    => $currentNode
+            ));
+
         }
-        ob_start();
-        include VIEW_DIR . DS . 'wiki.phtml';
-        return ob_get_clean();
     }
 }
 
