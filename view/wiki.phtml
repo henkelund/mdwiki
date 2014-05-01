@@ -8,7 +8,7 @@
         <script type="text/javascript" src="/js.js"></script>
     </head>
     <body>
-        <div class="navigation">
+        <div class="navigation" id="menu">
             <div id="navLink">
                 <span class="open">☰</span>
                 <span class="close">×</span>
@@ -60,7 +60,7 @@
         //<![CDATA[
             (function (global) {
                 global.search = new global.Search('search', 'searchResult', 'searchSuggestions');
-                global.menu = new global.Menu();
+                global.menu = new global.Menu('menu');
                 global.app = new global.App();
             })(window);
         //]]>
