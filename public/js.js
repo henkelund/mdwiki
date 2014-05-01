@@ -44,8 +44,9 @@
 
 
 
-    exports.Menu = function ()
+    exports.Menu = function (menuId)
     {
+        this._menuElement = doc.getElementById(menuId);
         this._toggleElement = doc.getElementById('navLink');
         this._toggleElement.onclick = this._toggleMenu.bind(this);
         this._expandElements = doc.getElementsByClassName('menu-expand');
@@ -65,7 +66,23 @@
             if (typeof storage === 'object'){
                 //Set Menu state:
                 if(storage.state !== undefined) {
+                    doc.body.classList.add('no-delay');
+                    this._menuElement.classList.add('no-delay');
                     doc.body.setAttribute('state', storage.state);
+                    // Clear stack with timeout:
+                    var self = this;
+                    setTimeout( function (){
+                        doc.body.classList.remove('no-delay');
+                        self._menuElement.classList.remove('no-delay');
+                        // Hide menu:
+                        setTimeout( function (){
+                            if(doc.body.getAttribute('state') == 'menu') {
+                                doc.body.setAttribute('state','');
+                                self._storageObject.state = '';
+                                self._store();
+                            }
+                        }, 0);
+                    }, 0);
                 }
                 // Set active nodes:
                 if(storage.activeNodes !== undefined) {
@@ -79,11 +96,9 @@
             }
         },
 
-        _toggleMenu: function(event) {
+        _toggleMenu: function() {
             var body = doc.body,
                 state = doc.body.getAttribute('state');
-            event.preventDefault();
-            event.stopPropagation();
             if (state == 'menu' ) {
                 body.setAttribute('state','');
                 this._storageObject.state = '';
