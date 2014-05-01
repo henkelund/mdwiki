@@ -1,10 +1,10 @@
 <ul class="level-<?php echo $level; ?>">
 <?php foreach ($this->getChildren() as $child): ?>
-    <li>
+    <li id="<?php echo md5($child->getPath(true)); ?>">
         <a href="<?php echo $child->getPath(true); ?>">
             <?php echo $child->name; ?>
             <?php if ($child->hasChildren()): ?>
-                <span class="icon icon-angle-down"></span>
+                <span class="icon icon-angle-right menu-expand"></span>
             <?php endif; ?>
         </a>
         <?php if ($child->hasChildren()): ?>
