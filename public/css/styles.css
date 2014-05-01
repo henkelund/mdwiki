@@ -3229,6 +3229,11 @@ body {
   -moz-transition: margin 0.5s ease;
   transition: margin 0.5s ease;
 }
+body.no-delay {
+  -webkit-transition: margin 0s ease;
+  -moz-transition: margin 0s ease;
+  transition: margin 0s ease;
+}
 
 .search {
   background-color: #eeeeee;
@@ -3270,11 +3275,6 @@ body {
   width: 100%;
 }
 
-#searchResult {
-  -webkit-transition: height 0.4s ease;
-  -moz-transition: height 0.4s ease;
-  transition: height 0.4s ease;
-}
 #searchResult ul {
   list-style: none;
   margin: 0;
@@ -3308,9 +3308,9 @@ body {
   line-height: 1em;
   cursor: pointer;
   z-index: 100;
-  -webkit-transition: background-color 0.2s ease, opacity 0.2s ease;
-  -moz-transition: background-color 0.2s ease, opacity 0.2s ease;
-  transition: background-color 0.2s ease, opacity 0.2s ease;
+  -webkit-transition: background-color 0.2s ease;
+  -moz-transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 #navLink:hover {
   background-color: #555555;
@@ -3330,7 +3330,7 @@ body {
   color: white;
 }
 
-.navigation {
+#menu {
   position: fixed;
   width: 250px;
   top: 0;
@@ -3345,7 +3345,12 @@ body {
   -moz-transition: left 0.5s ease;
   transition: left 0.5s ease;
 }
-.navigation .inner {
+#menu.no-delay {
+  -webkit-transition: left 0s ease;
+  -moz-transition: left 0s ease;
+  transition: left 0s ease;
+}
+#menu .inner {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -3444,7 +3449,7 @@ nav .level-1 {
     display: none;
   }
 
-  .navigation {
+  #menu {
     left: 0;
   }
 }
@@ -3467,7 +3472,7 @@ nav .level-1 {
     top: 0;
     z-index: 10;
   }
-  body[state="menu"] .navigation {
+  body[state="menu"] #menu {
     left: 0;
   }
   body[state="menu"] #navLink .open {
@@ -3481,7 +3486,7 @@ nav .level-1 {
     display: block;
   }
 
-  .navigation {
+  #menu {
     left: -250px;
   }
 }

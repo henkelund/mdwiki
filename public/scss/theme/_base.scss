@@ -19,7 +19,12 @@ body {
     min-height: 100%;
 
     @include transition(margin .5s ease);
+
+    &.no-delay {
+        @include transition(margin 0s ease);
+    }
 }
+
 
 // -----------------------------------------------------------------------------
 //  Header:
@@ -64,7 +69,6 @@ body {
 }
 
 #searchResult {
-    @include transition(height .4s ease);
 
     ul {
         list-style: none;
@@ -104,7 +108,7 @@ body {
     cursor: pointer;
     z-index: 100;
 
-    @include transition(background-color .2s ease, opacity .2s ease);
+    @include transition(background-color .2s ease);
 
     &:hover {
         background-color: $gray;
@@ -128,7 +132,7 @@ body {
     }
 }
 
-.navigation {
+#menu {
     position: fixed;
     width: $_nav-width;
     top: 0;
@@ -139,6 +143,10 @@ body {
 
     @include box-sizing(border-box);
     @include transition(left .5s ease);
+
+    &.no-delay {
+        @include transition(left 0s ease);
+    }
 
     .inner {
         position: absolute;

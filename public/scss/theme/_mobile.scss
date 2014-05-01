@@ -34,7 +34,7 @@ body[state="menu"] {
         z-index: 10;
     }
 
-    .navigation { left: 0; }
+    #menu { left: 0; }
 
     #navLink .open { display: none; }
     #navLink .close { display: block; }
@@ -53,7 +53,7 @@ body[state="menu"] {
 //Menu:
 #navLink .open { display: block; }
 
-.navigation {
+#menu {
     left: -$_nav-width;
 }
 
