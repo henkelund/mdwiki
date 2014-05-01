@@ -1,6 +1,6 @@
 <ul class="level-<?php echo $level; ?>">
 <?php foreach ($node->getChildren() as $child): ?>
-    <li id="<?php echo md5($child->getPath(true)); ?>">
+    <li id="<?php echo md5($child->getPath(true)); ?>"<?php if ($child->isCurrent()): ?> class="current"<?php endif; ?>>
         <a href="<?php echo $child->getPath(true); ?>">
             <?php echo $child->getName(); ?>
             <?php if ($child->hasChildren()): ?>

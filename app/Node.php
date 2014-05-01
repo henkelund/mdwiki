@@ -14,6 +14,8 @@ class Node
 
     protected $_children = array();
 
+    protected $_isCurrent = false;
+
     public function __construct($file)
     {
         $this->_name = preg_replace('/\.[a-z]{2,4}$/', '', basename($file));
@@ -110,6 +112,14 @@ class Node
     public function getDocument()
     {
         return $this->_document;
+    }
+
+    public function isCurrent($flag = null)
+    {
+        if (!is_null($flag)) {
+            $this->_isCurrent = !!$flag;
+        }
+        return $this->_isCurrent;
     }
 }
 

@@ -41,6 +41,7 @@ class Wiki
             $currentNode = null;
             if (isset($this->_pathIndex[$path])) {
                 $currentNode = $this->_pathIndex[$path];
+                $currentNode->isCurrent(true);
             }
             return View::render('wiki.phtml', array(
                 'navigationHtml' => $this->_docTree->getChildLinksHtml(),
